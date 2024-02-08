@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Fitness Tracker</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link href="reset.css" rel="stylesheet" type="text/css">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <script defer src="content.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1 class="log">Fitness Log</h1>
+        </header>
+        <main>
+            <div class="greeting">
+                <h1 class="welcome">Welcome back,</h1>
+                <h1 class="name">Joey!</h1>
+            </div>
+            <div class="image">
+                <img src="images/header image.png">
+            </div>
+            <span class="log-question">
+                What activity session are you logging?
+            </span>
+            <section class="past-activity">
+                <h2 class="past-header">Past Activity</h2>
+                <div class="teal">
+                    <div id="submit-p">
+                        <div class="col1">
+                            <span id="got-it">Got it!</span>
+                            <span id="content"></span>
+                        </div>
+                        <div class="col2">
+                            <span id="keep-it-up">Keep it up!</span>
+                        </div>
+                    </div>
+                    <div id="new-activity">
+                        <button class="new-activity-btn" id="button-1" type="button">
+                            <span id="text-area-1">Add New Activity</span>
+                        </button>
+                    </div>
+                    <div id="hidden">
+                        <div id="wrapper">
+                            <div class="date">
+                                <label>Date</label>
+                                <input id="choose-date" type="date" value="2024-02-06" min="1900-01-01" max="2024-02-06">
+                            </div>
+                            <div class="for-wrap">
+                                <div class="activity">
+                                    <label>Activity</label>
+                                    <div class="choose-activity">
+                                        <button id="drop-btn"></button>
+                                        <div class="drop-content">
+                                            <button id="walk">Walk</button>
+                                            <button id="run">Run</button>
+                                            <button id="swim">Swim</button>
+                                            <button id="bike">Bike</button>
+                                            <button id="yoga">Yoga</button>
+                                            <button id="soccer">Soccer</button>
+                                            <button id="bball">Basketball</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="for">for</span>
+                            </div>
+                            <div class="time-wrap">
+                                <div class="time">
+                                    <label>Time/Distance</label>
+                                    <input id="choose-time" type="number">
+                                </div>
+                                <div class="units">
+                                    <label>Units</label>
+                                    <div id="unit">
+                                        <span id="unit-txt"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit">
+                                <button id="submit-btn" type="submit" onclick="postData()">
+                                    <span id="submit-txt">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="future-plans">
+                <h2 class="future-header">Future Plans</h2>
+                <div class="gray">
+                    <div id="submit-p-2">
+                        <div class="col1">
+                            <span id="sounds-good">Sounds good!</span>
+                        </div>
+                        <div class="col2">
+                            <span id="dont-forget">Don't forget to come back</span>
+                        </div>
+                        <div class="col3">
+                            <span id="update-session">to update your session for</span>
+                        </div>
+                        <div class="col4">
+                            <span id="session"></span>
+                        </div>
+                    </div>
+                    <div id="new-activity-2">
+                        <button class="new-activity-btn" id="button-2" type="button">
+                            <span id="text-area-2">Add New Activity</span>
+                        </button>
+                    </div>
+                    <div id ="hidden-2">
+                        <div id="wrapper-2">
+                            <div class="date">
+                                <label>Date</label>
+                                <input id="choose-future-date" type="date" value="2024-02-06" min="1900-01-01" max="2024-02-06">
+                            </div>
+                            <div class="for-wrap">
+                                <div class="activity">
+                                    <label>Activity</label>
+                                    <div class="choose-activity">
+                                        <button id="drop-btn-2"></button>
+                                        <div class="drop-content">
+                                            <button id="walk-2">Walk</button>
+                                            <button id="run-2">Run</button>
+                                            <button id="swim-2">Swim</button>
+                                            <button id="bike-2">Bike</button>
+                                            <button id="yoga-2">Yoga</button>
+                                            <button id="soccer-2">Soccer</button>
+                                            <button id="bball-2">Basketball</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="submit">
+                                <button id="submit-btn-2" type="submit" onclick="postData()">
+                                    <span id="submit-txt-2">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
