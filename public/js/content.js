@@ -250,7 +250,7 @@ function submitAction() {
         scalar: document.getElementById("choose-time").value,
         units: document.getElementById("unit").textContent
     }
-    
+    postData('/store', data);
 }
 
 let submitButton2 = document.getElementById("submit-btn-2");
@@ -279,6 +279,7 @@ function submitAction2() {
         date: document.getElementById("choose-future-date").value,
         activity: document.getElementById("drop-btn-2").textContent,
     }
+    postData('/store', data);
 }
 
 // View progress button
@@ -307,23 +308,18 @@ function closeButtonAction() {
 }
 
 // Send data to server
-function postData() {
-    fetch('http://localhost:3000#index.js', {
+function postData(url, data) {
+    const res = {
         method: 'POST',
         headers: {
-            'Content-type': 'text/plain'
+            'Content-type': 'application/json'
         },
-        body: items.toString()
-    }).then(
-        function(res) {
-            return res.text();
-    }).then(
-        function(data) {
-            console.log("Data received: " + data);
-    }).catch(function(error) {
-        console.log("There has been a problem with your fetch operation: ", error);
-        displayOutput(null, error);
-    });
+        body: JSON.stringify(data)
+    };
+    console.log("data received: ", res.body);
     console.log("sending post request...");
+    fetch(url, res)
+    .then(res => res.json())
+    .then(data => console.log(data));
 
 }
