@@ -3,12 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Fitness Tracker</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link href="reset.css" rel="stylesheet" type="text/css">
-        <link href="style.css" rel="stylesheet" type="text/css">
-        <script defer src="content.js"></script>
+        <link href="css/reset.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/barchart.css" rel="stylesheet" type="text/css">
+        <script defer src="js/content.js" type="module"></script>
     </head>
     <body>
         <header>
@@ -25,8 +27,19 @@
             <span class="log-question">
                 What activity session are you logging?
             </span>
+            <div id="reminder-box">
+                <h2 id="reminder">Reminder</h2>
+                <div id="reminder-wrap">
+                    <span id="reminder-msg"></span>
+                    <button id="yes-btn"></button>
+                    <button id="no-btn"></button>
+                </div>
+            </div>
             <section class="past-activity">
-                <h2 class="past-header">Past Activity</h2>
+                <div id="past-progress">
+                    <h2 class="past-header">Past Activity</h2>
+                    <button id="progress">View Progress</button>
+                </div>
                 <div class="teal">
                     <div id="submit-p">
                         <div class="col1">
@@ -79,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="submit">
-                                <button id="submit-btn" type="submit" onclick="postData()">
+                                <button id="submit-btn" type="submit">
                                     <span id="submit-txt">Submit</span>
                                 </button>
                             </div>
@@ -113,7 +126,7 @@
                         <div id="wrapper-2">
                             <div class="date">
                                 <label>Date</label>
-                                <input id="choose-future-date" type="date" value="2024-02-06" min="1900-01-01" max="2024-02-06">
+                                <input id="choose-future-date" type="date" value="2024-02-06" min="2024-02-06" max="2099-12-31">
                             </div>
                             <div class="for-wrap">
                                 <div class="activity">
@@ -133,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="submit">
-                                <button id="submit-btn-2" type="submit" onclick="postData()">
+                                <button id="submit-btn-2" type="submit">
                                     <span id="submit-txt-2">Submit</span>
                                 </button>
                             </div>
@@ -141,6 +154,34 @@
                     </div>
                 </div>
             </section>
+            <div id="overlay">
+                <div id="chart-box">
+                    <button id="close-chart">x</button>
+                    <div id="chart-wrap">
+                        <div id="chart-activity">
+                            <span class="chart-text">View Activity for: </span>
+                            <div class="chart-dropdown">
+                                <button id="chart-dropbtn"></button>
+                                <div class="chart-drop-content">
+                                    <button id="chart-walk">Walk</button>
+                                    <button id="chart-run">Run</button>
+                                    <button id="chart-swim">Swim</button>
+                                    <button id="chart-bike">Bike</button>
+                                    <button id="chart-yoga">Yoga</button>
+                                    <button id="chart-soccer">Soccer</button>
+                                    <button id="chart-bball">Basketball</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chart-week">
+                            <span class="chart-text">For week ending: </span>
+                            <input id="chart-date" type="date" value="2024-02-06" min="2024-02-06" max="2099-12-31">
+                        </div>
+                        <button id="go-button">Go</button>
+                    </div>
+                    <div id="chart-anchor"></div>
+                </div>
+            </div>
         </main>
     </body>
 </html>

@@ -1,0 +1,132 @@
+#chart-anchor {
+    height: 50%;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
+#chart-box {
+    display: none;
+    background-color: #f2f2f2;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+
+#close-chart {
+    background-color: #f2f2f2;
+    font-size: 48px;
+    font-weight: 500;
+    margin-left: 90%;
+    margin-top: 7px;
+}
+
+#chart-wrap {
+    margin-top: -20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 400px) {
+    #chart-wrap {
+        margin-left: -20px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #chart-wrap {
+        flex-wrap: nowrap;
+    }
+}
+
+#chart-activity {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 10%;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 800px) {
+    #chart-activity {
+        margin-left: 5%;
+    }
+}
+
+#chart-week {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 800px) {
+    #chart-week {
+        margin-left: 5%;
+    }
+}
+
+.chart-text {
+    margin-right: 5px;
+}
+
+.chart-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#chart-dropbtn {
+    font-size: 16px;
+    height: 30px;
+    background-color: #fff;
+    width: 140px;
+    padding: 5px;
+    padding-left: 15px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.chart-drop-content {
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.chart-drop-content button {
+    background-color: #fff;
+    font-size: 16px;
+    width: 140px;
+    height: 30px;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+
+.chart-drop-content button:hover {
+    background-color: #333333;
+    color: #fff;
+}
+
+.chart-dropdown:hover .chart-drop-content {
+    display: block;
+}
+
+#chart-date {
+    padding: 5px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+#go-button {
+    margin-left: 40%;
+    font-weight: 600;
+    font-size: 12px;
+    color: #fff;
+    background-color: #333333;
+    padding: 10px 50px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

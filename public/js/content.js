@@ -153,10 +153,68 @@ function bballAction2() {
     activityBox.textContent = "Basketball";
 }
 
+// Chart drop down buttons
+
+let chartWalkButton = document.getElementById("chart-walk");
+chartWalkButton.addEventListener("click", chartWalkAction);
+
+function chartWalkAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Walk";
+}
+
+let chartRunButton = document.getElementById("chart-run");
+chartRunButton.addEventListener("click", chartRunAction);
+
+function chartRunAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Run";
+}
+
+let chartSwimButton = document.getElementById("chart-swim");
+chartSwimButton.addEventListener("click", chartSwimAction);
+
+function chartSwimAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Swim";
+}
+
+let chartBikeButton = document.getElementById("chart-bike");
+chartBikeButton.addEventListener("click", chartBikeAction);
+
+function chartBikeAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Bike";
+}
+
+let chartYogaButton = document.getElementById("chart-yoga");
+chartYogaButton.addEventListener("click", chartYogaAction);
+
+function chartYogaAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Yoga";
+}
+
+let chartSoccerButton = document.getElementById("chart-soccer");
+chartSoccerButton.addEventListener("click", chartSoccerAction);
+
+function chartSoccerAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Soccer";
+}
+
+let chartBballButton = document.getElementById("chart-bball");
+chartBballButton.addEventListener("click", chartBballAction);
+
+function chartBballAction() {
+    let activityBox = document.getElementById("chart-dropbtn");
+    activityBox.textContent = "Basketball";
+}
+
+
 // Submit Buttons
 
 // array of data to send to server
-let items = [];
 
 let submitButton = document.getElementById("submit-btn");
 submitButton.addEventListener("click", submitAction);
@@ -186,10 +244,13 @@ function submitAction() {
     }
     show.style.display = "flex";
     // add info to array to send to server
-    items.push(document.getElementById("choose-date").value);
-    items.push(document.getElementById("drop-btn").textContent);
-    items.push(document.getElementById("choose-time").value);
-    items.push(document.getElementById("unit").textContent);
+    let data = {
+        date: document.getElementById("choose-date").value,
+        activity: document.getElementById("drop-btn").textContent,
+        scalar: document.getElementById("choose-time").value,
+        units: document.getElementById("unit").textContent
+    }
+    
 }
 
 let submitButton2 = document.getElementById("submit-btn-2");
@@ -214,8 +275,35 @@ function submitAction2() {
     }
     show.style.display = "flex";
     // add info to array to send to server
-    items.push(document.getElementById("choose-future-date").value);
-    items.push(document.getElementById("drop-btn-2").textContent);
+    let data = {
+        date: document.getElementById("choose-future-date").value,
+        activity: document.getElementById("drop-btn-2").textContent,
+    }
+}
+
+// View progress button
+
+let progressButton = document.getElementById("progress");
+progressButton.addEventListener("click", progressButtonAction);
+
+function progressButtonAction() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+    let chartBox = document.getElementById("chart-box");
+    chartBox.style.display = "block";
+    const today = new Date().getTime();
+}
+
+// Close chart button
+
+let closeButton = document.getElementById("close-chart");
+closeButton.addEventListener("click", closeButtonAction);
+
+function closeButtonAction() {
+    let chart = document.getElementById("chart-box");
+    chart.style.display = "none";
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = "none";
 }
 
 // Send data to server

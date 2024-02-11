@@ -77,6 +77,24 @@ img {
     margin-bottom: 5px;
 }
 
+#past-progress {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+#progress {
+    font-weight: 600;
+    font-size: 12px;
+    color: #fff;
+    background-color: #333333;
+    padding: 10px 30px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    margin-top: -5px;
+    margin-left: 20px;
+}
+
 .teal {
     height: 275px;
     width: 100%;
@@ -214,6 +232,11 @@ label {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
+}
+
+.drop-content button:hover {
+    background-color: #333333;
+    color: #fff;
 }
 
 .choose-activity:hover .drop-content {
@@ -443,4 +466,81 @@ label {
 
 #hidden-2 {
     display: none;
+}
+
+#reminder-box {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #5267D9;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#reminder {
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+#reminder-msg {
+    padding-left: 10px;
+    color: #fff;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 800px) {
+    #reminder-msg {
+        margin-left: 40px;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    #reminder-msg {
+        display: flex;
+    }
+}
+
+#yes-btn {
+    background-color: #5267D9;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+@media screen and (min-width: 800px) {
+    #yes-btn {
+        margin-left: 50px;
+    }
+}
+
+#no-btn {
+    background-color: #5267D9;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+@media screen and (min-width: 800px) {
+    #no-btn {
+        margin-left: 30px;
+    }
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
 }
