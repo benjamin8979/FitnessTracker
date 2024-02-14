@@ -3,12 +3,15 @@ import barchart from "./barchart.js";
 function setDate() {
     let pastDate = document.getElementById("choose-date");
     let futureDate = document.getElementById("choose-future-date");
+    let chartDate = document.getElementById("chart-date");
     let dateObj = new Date();
     let dateValue = dateObj.getFullYear() + '-' + (dateObj.getMonth() < 10 ? '0' + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + '-' + (dateObj.getDate() < 10 ? '0' + (dateObj.getDate()) : dateObj.getDate());
     pastDate.max = dateValue;
     futureDate.min = dateValue;
+    chartDate.max = dateValue;
     pastDate.value = dateValue;
     futureDate.value = dateValue;
+    chartDate.value = dateValue;
 }
 
 setDate();
