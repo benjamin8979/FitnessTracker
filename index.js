@@ -43,6 +43,20 @@ app.post('/store', function(req, res, next) {
     );
 });
 
+// Server responds to get request for week's information
+app.get('/week', async function(req, res, next) {
+    let activity = req.query.activity;
+    let date = req.query.date;
+    if (activity == "") {
+        console.log("BLANK ACTIVITY");
+        activity = await dbo.latestActivityDB();
+    }
+    console.log("Server received a get request at ", req.url);
+    let weekResponse = await dbo.pastWeekDB(activity, date);
+    console.log("Server response: ", weekResponse);
+    res.json(weekResponse);
+})
+
 function parseDate(date) {
     let parsed = date.split(/\D/);
     return new Date(parsed[0], --parsed[1], parsed[2]);

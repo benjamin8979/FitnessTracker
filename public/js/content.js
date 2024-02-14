@@ -1,3 +1,4 @@
+import barchart from "./barchart.js";
 
 // Add Activity buttons
 
@@ -284,6 +285,8 @@ function submitAction2() {
 
 // View progress button
 
+let firstChart = true;
+
 let progressButton = document.getElementById("progress");
 progressButton.addEventListener("click", progressButtonAction);
 
@@ -293,6 +296,69 @@ function progressButtonAction() {
     let chartBox = document.getElementById("chart-box");
     chartBox.style.display = "block";
     const today = new Date().getTime();
+    let dayLength = 8.64E7;
+    let date  =  today - dayLength;
+    let activity = "";
+    let url = '/week?date=' + date + '&activity=' + activity;
+    if (firstChart == true) {
+        console.log("Creating chart");
+        barchart.init('chart-anchor', 500, 300);
+        firstChart = false;
+    }
+    getChart(url);
+}
+
+function getChart(url) {
+    const req = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    console.log("sending get request to ", url);
+    fetch(url, req).then(
+        res => res.json()
+    ).then(
+        data => barchart.render(dataToChart(data), yAxis(data[0].activity), 'Day of the Week')
+    ).catch(
+        function(error) {
+            console.log("Error: ", error);
+        }
+    )
+}
+
+function dataToChart(data) {
+    let chartArr = [];
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].amount > 0) {
+            chartArr[i] = {'date': data[i].date, 'value': data[i].amount};
+        }
+    }
+    return chartArr;
+}
+
+function yAxis(activity) {
+    if (activity == "Walk") {
+        return "Kilometers Walked";
+    }
+    else if (activity == "Run") {
+        return "Kilometers Ran";
+    }
+    else if (activity == "Bike") {
+        return "Kilometers Biked";
+    }
+    else if (activity == "Swim") {
+        return "Kilometers Swam";
+    }
+    else if (activity == "Yoga") {
+        return "Minutes of Yoga";
+    }
+    else if (activity == "Soccer") {
+        return "Minutes of Soccer";
+    }
+    else if (activity == "Basketball") {
+        return "Minutes of Basketball";
+    }
 }
 
 // Close chart button
@@ -305,6 +371,29 @@ function closeButtonAction() {
     chart.style.display = "none";
     let overlay = document.getElementById("overlay");
     overlay.style.display = "none";
+}
+
+// Go button to view chart
+
+let goButton = document.getElementById("go-button");
+goButton.addEventListener("click", goButtonAction);
+
+function goButtonAction() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+    let chartBox = document.getElementById("chart-box");
+    chartBox.style.display = "block";
+    let date = document.getElementById("chart-date").value;
+    date = parseDate(date);
+    date = Date.parse(date);
+    let activity = document.getElementById("chart-dropbtn").textContent;
+    let url = '/week?date=' + date + '&activity=' + activity;
+    getChart(url);
+}
+
+function parseDate(date) {
+    let parsed = date.split(/\D/);
+    return new Date(parsed[0], --parsed[1], parsed[2]);
 }
 
 // Send data to server

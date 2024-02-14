@@ -7,7 +7,7 @@
 #chart-box {
     display: none;
     background-color: #f2f2f2;
-    height: 80%;
+    height: 90%;
     width: 80%;
     margin-left: 10%;
     margin-top: 40px;
@@ -25,6 +25,7 @@
     margin-top: -20px;
     display: flex;
     flex-wrap: wrap;
+    margin-right: 20px;
 }
 
 @media screen and (max-width: 400px) {
@@ -33,11 +34,13 @@
     }
 }
 
-@media screen and (min-width: 800px) {
+/* @media screen and (min-width: 900px) {
     #chart-wrap {
+        margin-left: -20px;
         flex-wrap: nowrap;
+        
     }
-}
+} */
 
 #chart-activity {
     margin-top: 15px;
@@ -47,7 +50,7 @@
     font-weight: 600;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 780px) {
     #chart-activity {
         margin-left: 5%;
     }
@@ -61,7 +64,7 @@
     font-weight: 600;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 780px) {
     #chart-week {
         margin-left: 5%;
     }
@@ -84,6 +87,12 @@
     padding: 5px;
     padding-left: 15px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+@media screen and (max-width: 350px) {
+    #chart-dropbtn {
+        width: 100px;
+    }
 }
 
 .chart-drop-content {
@@ -129,4 +138,45 @@
     box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.barchart {
+    background-color: #333333;
+    height: 130%;
+    width: 100%;
+}
+
+@media screen and (max-width: 780px) {
+    .barchart {
+        height: 115%;
+    }
+}
+
+.barchart text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    fill: #fff;
+    font-size: 10px;
+}
+
+.barchart-x-axis-label, .barchart-y-axis-label {
+    font-size: 14px !important;
+}
+
+.barchart-bar {
+    fill: #53e0cd;
+}
+
+.barchart-x-axis line, .barchart-x-axis path {
+    stroke: #fff;
+    stroke-width: 4px;
+}
+
+.barchart-y-axis line, .barchart-y-axis path {
+    stroke: #fff;
+    stroke-width: 4px;
+}
+
+.tick line {
+    visibility: hidden;
 }
