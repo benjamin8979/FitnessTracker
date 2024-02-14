@@ -1,5 +1,20 @@
 import barchart from "./barchart.js";
 
+function setDate() {
+    let pastDate = document.getElementById("choose-date");
+    let futureDate = document.getElementById("choose-future-date");
+    let dateObj = new Date();
+    let dateValue = dateObj.getFullYear() + '-' + (dateObj.getMonth() < 10 ? '0' + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + '-' + (dateObj.getDate() < 10 ? '0' + (dateObj.getDate()) : dateObj.getDate());
+    pastDate.max = dateValue;
+    futureDate.min = dateValue;
+    pastDate.value = dateValue;
+    futureDate.value = dateValue;
+}
+
+setDate();
+
+getReminder('/reminder');
+
 // Add Activity buttons
 
 let newActivityButton = document.getElementById("button-1");
@@ -412,3 +427,104 @@ function postData(url, data) {
     .then(data => console.log(data));
 
 }
+
+// No button closes reminder
+let noButton = document.getElementById("no-btn");
+noButton.addEventListener("click", noButtonAction);
+
+function noButtonAction() {
+    let pressed = document.getElementById("reminder-box");
+    pressed.style.display = "none";
+}
+
+// Yes button opens activity log
+let yesButton = document.getElementById("yes-btn");
+
+// Get reminder data from server
+function getReminder(url) {
+    const req = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    const today = new Date().getTime();
+    console.log("sending get request to ", url);
+    fetch(url, req).then(
+        res => res.json()
+    ).then(
+        data => {
+            changeReminder(data.date, today, data.activity);
+            yesButton.removeEventListener("click", () => yesButtonAction);
+            yesButton.addEventListener("click", () => yesButtonAction(data.date, data.activity));
+        }
+    ).catch(
+        function(error) {
+            console.log("Error: ", error);
+            let noRemind = document.getElementById("reminder-box");
+            noRemind.style.display = "none";
+        }
+    )
+}
+
+function yesButtonAction(date, activity) {
+    buttonAction();
+    noButtonAction();
+    let dateInput = document.getElementById("choose-date");
+    let dateObj = new Date(date);
+    let dateValue = dateObj.getFullYear() + '-' + (dateObj.getMonth() < 10 ? '0' + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + '-' + (dateObj.getDate() < 10 ? '0' + (dateObj.getDate()) : dateObj.getDate());
+    dateInput.value = dateValue;
+    const activities = {
+        "Walk": walkAction(),
+        "Run": runAction(),
+        "Swim": swimAction(),
+        "Bike": bikeAction(),
+        "Yoga": yogaAction(),
+        "Soccer": soccerAction(),
+        "Basketball": bballAction()
+    }
+    activities[activity];
+}
+
+// Change reminder message
+function changeReminder(date, today, activity) {
+    
+    let dayLength = 8.64E7;
+    let reminderMsg = document.getElementById("reminder-msg");
+    if ((today - date) > dayLength * 7 || (today - date) < dayLength || date == undefined) {
+        let noRemind = document.getElementById("reminder-box");
+        noRemind.style.display = "none";
+    }
+    else if (((today - date) > dayLength) && (today - date) <= dayLength * 2) {
+        if (activity == "Walk" || activity == "Run" || activity == "Bike" || activity == "Swim") {
+            reminderMsg.textContent = `Did you ${activity} yesterday?`;
+        }
+        else if (activity == "Yoga") {
+            reminderMsg.textContent = `Did you do ${activity} yesterday?`;
+        }
+        else if (activity == "Soccer" || activity == "Basketball") {
+            reminderMsg.textContent = `Did you play ${activity} yesterday?`;
+            reminderMsg.style.fontSize = '14px';
+        }
+    }
+    else {
+        if (activity == "Walk" || activity == "Run" || activity == "Bike" || activity == "Swim") {
+            reminderMsg.textContent = `Did you ${activity} ${getDayOfWeek(dayLength, date, today)}?`;
+        }
+        else if (activity == "Yoga") {
+            reminderMsg.textContent = `Did you do ${activity} ${getDayOfWeek(dayLength, date, today)}?`;
+        }
+        else if (activity == "Soccer" || activity == "Basketball") {
+            reminderMsg.textContent = `Did you play ${activity} ${getDayOfWeek(dayLength, date, today)}?`;
+            reminderMsg.style.fontSize = '14px';
+        }
+    }
+}
+
+function getDayOfWeek(dayLength, date, today) {
+    const todayOfTheWeek = new Date().getDay();
+    const previousDay = Math.floor((today - date) / dayLength);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[((todayOfTheWeek + 7) - previousDay) % 7];
+}
+

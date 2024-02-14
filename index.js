@@ -43,6 +43,14 @@ app.post('/store', function(req, res, next) {
     );
 });
 
+// Server respons to get request for reminder
+app.get('/reminder', async function(req, res, next) {
+    console.log("Server received a get request at ", req.url);
+    let mostRecentPlan = await dbo.getDB();
+    console.log("Server side: ", mostRecentPlan);
+    res.json(mostRecentPlan);
+}) 
+
 // Server responds to get request for week's information
 app.get('/week', async function(req, res, next) {
     let activity = req.query.activity;
